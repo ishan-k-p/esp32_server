@@ -22,7 +22,7 @@ def control_pin(pin_name, action):
         elif action == "click":
             # Simulate a button click (press and release)
             pin.value(1)  # Button pressed (ON)
-            time.sleep(CLICK_DURATION)  # Wait 100ms to simulate press duration
+            time.sleep(CLICK_DURATION)  # Wait to simulate press duration
             pin.value(0)  # Button released (OFF)
             return f"{pin_name} clicked"
         else:
