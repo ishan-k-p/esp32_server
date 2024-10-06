@@ -21,4 +21,4 @@ def duckdns_updater_task():
         except Exception as e:
             print("Error updating DuckDNS:", e)
 
-        time.sleep(DNS_UPDATE_DURATION)  # Update every 10 minutes
+        time.sleep(DNS_UPDATE_DURATION)  # Update based on the configuration
