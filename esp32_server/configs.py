@@ -1,6 +1,23 @@
 from collections import namedtuple
 import machine
 
+# constants
+
+IOT_URL = "/devices/controls"
+REGISTER = "/init/users/new-user"
+LOGIN = "init/users/gate-pass"
+USER_OPERATIONS = "init/users"
+
+CLICK_DURATION = 0.5
+WIFI_SSID = "YOUR_WIFI_SSID"
+WIFI_PASSWORD = "YOUR_WIFI_PASSWORD"
+DDNS_TOKEN = "DuckDNS_TOKEN"
+DDNS_DOMAIN = "DuckDNS_DOMAIN" #only the subdomain name
+API_HOST = "0.0.0.0"
+API_PORT = 1195
+DNS_UPDATE_DURATION = 6000 # in seconds
+
+
 PinName = namedtuple('PinName', [
     'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4',
     'GPIO5', 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15',
@@ -46,16 +63,6 @@ pin_names = {
     "GPIO33": pins.GPIO33
     # GPIO34-39 are inputs only, so they are excluded
 }
-
-IOT_URL = "/devices/control"
-CLICK_DURATION = 0.5
-WIFI_SSID = "YOUR_WIFI_SSID"
-WIFI_PASSWORD = "YOUR_WIFI_PASSWORD"
-DDNS_TOKEN = "DuckDNS_TOKEN"
-DDNS_DOMAIN = "DuckDNS_DOMAIN" #only the subdomain name
-API_HOST = "0.0.0.0"
-API_PORT = 1195
-DNS_UPDATE_DURATION = 6000 # in seconds
 
 class PinMap:
     @staticmethod

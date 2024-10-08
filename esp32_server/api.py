@@ -4,32 +4,6 @@ import ujson
 
 from configs import PinMap, pin_names, IOT_URL, CLICK_DURATION, API_HOST, API_PORT
 
-
-# Helper function to control pins based on API request
-def control_pin(pin_name, action):
-    pin_number = pin_names.get(pin_name)
-
-    if pin_number is not None:
-        pin_map = PinMap.get_pin_map()
-        pin = pin_map[pin_number]
-
-        if action == "on":
-            pin.value(1)  # Turn ON
-            return f"{pin_name} turned ON"
-        elif action == "off":
-            pin.value(0)  # Turn OFF
-            return f"{pin_name} turned OFF"
-        elif action == "click":
-            # Simulate a button click (press and release)
-            pin.value(1)  # Button pressed (ON)
-            time.sleep(CLICK_DURATION)  # Wait 100ms to simulate press duration
-            pin.value(0)  # Button released (OFF)
-            return f"{pin_name} clicked"
-        else:
-            return "Invalid action"
-    else:
-        return "Invalid pin"
-
 def parse_request(request):
     try:
         # Split the request into lines
