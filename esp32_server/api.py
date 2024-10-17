@@ -81,12 +81,13 @@ def parse_request(request):
 
 
 # Simple API server to control pins via HTTP
-def start_api_server():
+def start_api_server(display):
     addr = socket.getaddrinfo(API_HOST, API_PORT)[0][-1]
     s = socket.socket()
     s.bind(addr)
     s.listen(5)
     print("API server listening on", addr)
+    display.custom_message(f"API server listening on: {addr}", 0, 16)
 
     while True:
         client, addr = s.accept()
@@ -103,8 +104,9 @@ def start_api_server():
         response_buffer.extend(b"Content-Type: text/plain\r\n")
         response_buffer.extend(b"Connection: close\r\n\r\n")
         response_buffer.extend(response.encode('utf-8'))  # Convert the response to bytes
-
+        display.custom_message("response", 0, 16)
         # Send the entire response using the byte buffer
         client.sendall(response_buffer)
         client.close()
+
 

@@ -8,17 +8,21 @@ duckdns_token = DDNS_TOKEN
 duckdns_domain = DDNS_DOMAIN
 
 # DuckDNS Updater task to run on Core 0
-def duckdns_updater_task():
+def duckdns_updater_task(display):
     while True:
         url = f"https://www.duckdns.org/update?domains={duckdns_domain}&token={duckdns_token}&ip="
 
         try:
             response = urequests.get(url)
             if response.status_code == 200:
+                display.custom_message(f"DNS Updated Successfully: {response.status_code}", 0, 16)
                 print("DuckDNS updated successfully.")
             else:
+                display.custom_message(f"Failed to update DuckDNS: {response.status_code}", 0, 16)
                 print("Failed to update DuckDNS:", response.status_code)
         except Exception as e:
+            display.custom_message(f"Error updating DuckDNS: {e}", 0, 16)
             print("Error updating DuckDNS:", e)
-
+        display.start_continuous_message("WIFI DNS")
         time.sleep(DNS_UPDATE_DURATION)  # Update every 10 minutes
+
